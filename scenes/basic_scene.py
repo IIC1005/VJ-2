@@ -1,27 +1,23 @@
-if __name__ == "__main__": # Solo para que no ejecutes este archivo
-    import sys
-    print(
-        "\033[38;2;255;0;0mESTE MODULO NO DEBE EJECUTARSE. EJECUTAR main.py\033[0m\n"
-        * 3
-    )
-    sys.exit()
+if __name__ == "__main__":
+    raise RuntimeError("\033c❌ ESTE ARCHIVO NO DEBE EJECUTARSE. EJECUTA main.py")
 
 import pygame
-from pygame.locals import (K_ESCAPE, KEYDOWN, QUIT)
+from pygame.locals import K_ESCAPE, KEYDOWN, QUIT
+
 
 def gameloop(screen):
 
-    # inicializamos el reloj
+    # Inicializamos el reloj
     clock = pygame.time.Clock()
 
     running = True
 
-    # fuente y texto
+    # Definimos la fuente y texto a usar
     font = pygame.font.Font(None, 48)
     line1 = font.render("Estamos en basic_scene", True, (255, 255, 255))
     line2 = font.render("Aprieta ESC para salir de esta escena", True, (255, 255, 255))
 
-    # posiciones
+    # Definimos las posiciones de los textos
     line1_rect = line1.get_rect(
         center=(screen.get_width() // 2, screen.get_height() // 2 - 25)
     )
@@ -30,7 +26,7 @@ def gameloop(screen):
         center=(screen.get_width() // 2, screen.get_height() // 2 + 25)
     )
 
-    # loop principal
+    # Iniciamos el loop principal de la escena inicial
     while running:
         for event in pygame.event.get():
             if event.type == KEYDOWN:
@@ -39,15 +35,15 @@ def gameloop(screen):
             elif event.type == QUIT:
                 running = False
 
-        # limpiar pantalla (fondo negro)
+        # Limpiar pantalla (fondo negro)
         screen.fill((0, 0, 0))
 
-        # dibujar textos
+        # Dibujar textos
         screen.blit(line1, line1_rect)
         screen.blit(line2, line2_rect)
 
-        # actualizar pantalla
+        # Actualizar pantalla
         pygame.display.flip()
 
-        # limitar FPS
+        # Limitar FPS
         clock.tick(30)
