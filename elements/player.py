@@ -44,7 +44,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.bottom = min(self.rect.bottom, self.screen_height)
 
         # TODO (2.4): Actualizar las balas
-        self.bullets.update()
 
     def shoot(self, mouse_pos):
         # TODO (2.4): Calcular direccion de la bala
