@@ -19,5 +19,7 @@ from .bullet import Bullet
 from .enemy import Enemy
 from .player import Player
 
-# ? Para agregar mas elementos, solo hay que importarlos
+# ? Para agregar mas elementos, solo hay que importarlos y agregarlos a la lista __all__.
 # ? from .nombre_del_archivo import NombreDeLaClase
+
+__all__ = ["Bullet", "Enemy", "Player"]
