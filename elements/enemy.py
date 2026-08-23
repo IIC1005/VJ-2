@@ -1,25 +1,22 @@
-if __name__ == "__main__": # Solo para que no ejecutes este archivo
-    import sys
-    print(
-        "\033[38;2;255;0;0mESTE MODULO NO DEBE EJECUTARSE. EJECUTAR main.py\033[0m\n"
-        * 3
-    )
-    sys.exit()
+if __name__ == "__main__":
+    raise RuntimeError("\033c❌ ESTE ARCHIVO NO DEBE EJECUTARSE. EJECUTA main.py")
+
+import random
 
 import pygame
-import random
-from pygame.locals import (RLEACCEL)
 
-BUGpng = pygame.image.load('assets/bug.png')
+BUGpng = pygame.image.load("assets/bug.png")
 BUGpng_scaled = pygame.transform.scale(BUGpng, (64, 64))
+
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, screen):
-        super(Enemy, self).__init__()
-        self.surf = BUGpng_scaled
-        self.surf.set_colorkey((0, 0, 0), RLEACCEL)
-        # la posicion inicial es generada aleatoriamente, al igual que la velocidad
-        self.rect = self.surf.get_rect(
+
+        # ? super().__init__() inicializa la clase padre (Sprite)
+        super().__init__()
+
+        self.image = BUGpng_scaled
+        self.rect = self.image.get_rect(
             center=(
                 screen.get_width() + 100,
                 random.randint(0, screen.get_height()),
@@ -27,12 +24,10 @@ class Enemy(pygame.sprite.Sprite):
         )
         self.speed = random.randint(3, 5)
 
-
-
     def update(self):
+        # ? Mover a los enemigos
         self.rect.move_ip(-self.speed, 0)
-        # Destruir a los enemigos
-        # si se salen de la pantalla
+
+        # ? Destruir a los enemigos
         if self.rect.right < 0:
             self.kill()
-
